@@ -5,4 +5,7 @@ abstract class BaseEndpoints {
 
   /// Getter for games endpoint
   String get games;
+
+  /// Getter for covers endpoint
+  String get covers;
 }

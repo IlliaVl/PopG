@@ -6,6 +6,11 @@ void main() async {
   final netClient = IgdbClient();
   final provider = IgdbProvider(netClient);
   final games = await provider.getPopularGames();
+  final coverIds = games
+      .where((gameDto) => gameDto.cover != null)
+      .map((gameDto) => gameDto.cover!)
+      .toList();
+  final covers = await provider.getCovers(coverIds);
 
   runApp(const MyApp());
 }

@@ -18,4 +18,9 @@ class IgdbClient extends NetClient {
           baseUrl: _baseUrl,
           defaultHeaders: _defaultHeaders,
         );
+
+  /// Getting cover image url path for provided [imageId]
+  @override
+  String getCoverPath(String imageId) =>
+      'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/$imageId.jpg';
 }

@@ -8,4 +8,8 @@ class IgdbEndpoints extends BaseEndpoints {
   /// Games endpoint
   @override
   String get games => 'games';
+
+  /// Covers endpoint
+  @override
+  String get covers => 'covers';
 }

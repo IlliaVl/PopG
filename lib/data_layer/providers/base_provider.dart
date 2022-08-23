@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
-
+import '../dto/cover_dto.dart';
+import '../dto/game_dto.dart';
 import '../network/net_client.dart';
 
 /// An abstract provider for all data
@@ -11,5 +11,8 @@ abstract class BaseProvider {
   BaseProvider(this.netClient);
 
   /// Returns list of popular games
-  Future<Response> getPopularGames();
+  Future<List<GameDTO>> getPopularGames();
+
+  /// Returns covers for provided list of [ids]
+  Future<List<CoverDTO>> getCovers(List<int> ids);
 }

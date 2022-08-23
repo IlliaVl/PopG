@@ -1,6 +1,6 @@
-import 'endpoints/base_endpoints.dart';
+import '../../domain_layer/abstracts/network/endpoints/base_endpoints.dart';
+import '../../domain_layer/abstracts/network/net_client.dart';
 import 'endpoints/igdb_endpoints.dart';
-import 'net_client.dart';
 
 /// Net client for IGDB
 class IgdbClient extends NetClient {

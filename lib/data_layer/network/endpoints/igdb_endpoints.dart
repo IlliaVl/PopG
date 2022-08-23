@@ -1,4 +1,4 @@
-import 'base_endpoints.dart';
+import '../../../domain_layer/abstracts/network/endpoints/base_endpoints.dart';
 
 /// IGDB endpoints
 class IgdbEndpoints extends BaseEndpoints {

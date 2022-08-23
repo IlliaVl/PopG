@@ -1,12 +1,13 @@
+import '../../domain_layer/abstracts/providers/base_provider.dart';
 import '../dto/cover_dto.dart';
 import '../dto/game_dto.dart';
-import 'base_provider.dart';
 
 /// IGDB data provider
 class IgdbProvider extends BaseProvider {
   /// Creates new [IgdbProvider]
   IgdbProvider(super.netClient);
 
+  /// Returns list of popular games DTOs
   @override
   Future<List<GameDTO>> getPopularGames() async {
     final response = await netClient(
@@ -24,7 +25,7 @@ class IgdbProvider extends BaseProvider {
     throw 'Games were not received';
   }
 
-  /// Returns covers for provided list of [ids]
+  /// Returns list of covers DTOs for provided list of [ids]
   @override
   Future<List<CoverDTO>> getCovers(List<int> ids) async {
     final response = await netClient(

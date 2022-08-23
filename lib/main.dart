@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:popg/data_layer/network/igdb_client.dart';
+import 'package:popg/data_layer/providers/igdb_provider.dart';
 
-void main() {
+void main() async {
+  final netClient = IgdbClient();
+  final provider = IgdbProvider(netClient);
+  final games = await provider.getPopularGames();
+
   runApp(const MyApp());
 }
 

@@ -10,9 +10,6 @@ abstract class NetClient {
   /// Endpoint paths to be used by this [NetClient]
   final BaseEndpoints endpoints;
 
-  /// Getting cover image url path for provided [imageId]
-  String getCoverPath(String imageId);
-
   /// Creates new [NetClient] with provided [baseUrl]
   /// and optional [defaultHeaders]
   NetClient({

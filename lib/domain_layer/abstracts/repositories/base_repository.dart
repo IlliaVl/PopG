@@ -13,7 +13,12 @@ abstract class BaseRepository {
   BaseRepository({required this.provider});
 
   /// Returns list of popular games
-  Future<List<Game>> getPopularGames();
+  ///
+  /// Use `limit` and `offset` to paginate.
+  Future<List<Game>> getPopularGames({
+    int limit = 30,
+    int offset = 0,
+  });
 
   /// Returns list of covers for provided list of [ids]
   Future<List<Cover>> getCovers(List<int> ids);

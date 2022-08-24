@@ -1,6 +1,9 @@
-/// Data transfer object that represents a cover.
+/// Model which represents cover of the image
 class Cover {
-  /// Image id of the cover
+  /// ID of the cover
+  final int id;
+
+  /// Image url string of the cover
   final String imageUrlString;
 
   /// Cover width
@@ -11,8 +14,24 @@ class Cover {
 
   /// Creates new [Cover]
   Cover({
-    required this.imageUrlString,
+    required this.id,
+    this.imageUrlString = '',
     this.width = 0,
     this.height = 0,
   });
+
+  /// Creates a [Cover] copy with the provided parameters
+  Cover copyWith({
+    int? id,
+    String? imageUrlString,
+    int? width,
+    int? height,
+  }) {
+    return Cover(
+      id: id ?? this.id,
+      imageUrlString: imageUrlString ?? this.imageUrlString,
+      width: width ?? this.width,
+      height: height ?? this.height,
+    );
+  }
 }

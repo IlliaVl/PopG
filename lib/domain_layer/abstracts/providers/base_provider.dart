@@ -11,7 +11,12 @@ abstract class BaseProvider {
   BaseProvider(this.netClient);
 
   /// Returns list of popular games DTOs
-  Future<List<GameDTO>> getPopularGames();
+  ///
+  /// Use `limit` and `offset` to paginate.
+  Future<List<GameDTO>> getPopularGames({
+    int limit = 30,
+    int offset = 0,
+  });
 
   /// Returns list of covers DTOs for provided list of [ids]
   Future<List<CoverDTO>> getCovers(List<int> ids);

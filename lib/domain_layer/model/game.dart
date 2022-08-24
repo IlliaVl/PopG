@@ -1,10 +1,12 @@
-/// Data transfer object that represents a game.
+import 'cover.dart';
+
+/// Model representing game data
 class Game {
   /// Name of the game
   final String name;
 
-  /// Cover ID of the game
-  final int? cover;
+  /// Cover of the game
+  Cover? cover;
 
   /// Rating of the game
   final double rating;

@@ -8,16 +8,22 @@ class IgdbProvider extends BaseProvider {
   IgdbProvider(super.netClient);
 
   /// Returns list of popular games DTOs
+  ///
+  /// Use `limit` and `offset` to paginate.
   @override
-  Future<List<GameDTO>> getPopularGames() async {
+  Future<List<GameDTO>> getPopularGames({
+    int limit = 30,
+    int offset = 0,
+  }) async {
     final response = await netClient(
       netClient.endpoints.games,
       data: 'fields name, rating, cover, artworks, screenshots;'
           'sort rating desc;'
           'where rating != null;'
-          'limit 100;',
+          'limit $limit;'
+          'offset $offset;',
     );
-    if (response.data is List && response.data.length > 0) {
+    if (response.data is List) {
       return GameDTO.fromJsonList(
         List<Map<String, dynamic>>.from(response.data),
       );
@@ -34,7 +40,7 @@ class IgdbProvider extends BaseProvider {
           'limit 100;'
           'where id = (${ids.join(",")});',
     );
-    if (response.data is List && response.data.length > 0) {
+    if (response.data is List) {
       return CoverDTO.fromJsonList(
         List<Map<String, dynamic>>.from(response.data),
       );

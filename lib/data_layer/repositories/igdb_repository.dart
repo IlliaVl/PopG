@@ -9,9 +9,17 @@ class IgdbRepository extends BaseRepository {
   IgdbRepository({required super.provider});
 
   /// Returns list of popular games
+  ///
+  /// Use `limit` and `offset` to paginate.
   @override
-  Future<List<Game>> getPopularGames() async {
-    final dtos = await provider.getPopularGames();
+  Future<List<Game>> getPopularGames({
+    int limit = 30,
+    int offset = 0,
+  }) async {
+    final dtos = await provider.getPopularGames(
+      limit: limit,
+      offset: offset,
+    );
     return dtos.map((dameDto) => dameDto.toGame()).toList();
   }
 
@@ -19,6 +27,12 @@ class IgdbRepository extends BaseRepository {
   @override
   Future<List<Cover>> getCovers(List<int> ids) async {
     final dtos = await provider.getCovers(ids);
-    return dtos.map((coverDto) => coverDto.toCover()).toList();
+    return dtos
+        .map((coverDto) => coverDto.toCover(_coverImageBuilder))
+        .toList();
   }
+
+  /// Getting cover image url path for provided [imageId]
+  String _coverImageBuilder(String imageId) =>
+      'https://images.igdb.com/igdb/image/upload/t_cover_big_2x/$imageId.jpg';
 }

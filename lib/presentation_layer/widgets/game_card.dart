@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain_layer/model/game.dart';
+import '../screens/game_details_screen.dart';
 import 'constrained_network_image.dart';
 
 /// Card for displaying data of provided [game]
@@ -17,7 +18,11 @@ class GameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => GameDetailsScreen(game: game),
+        ),
+      ),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         margin: const EdgeInsets.all(8.0),

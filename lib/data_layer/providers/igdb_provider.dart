@@ -17,7 +17,7 @@ class IgdbProvider extends BaseProvider {
   }) async {
     final response = await netClient(
       netClient.endpoints.games,
-      data: 'fields name, rating, cover, artworks, screenshots;'
+      data: 'fields name, rating, cover, storyline, summary;'
           'sort rating desc;'
           'where rating != null;'
           'limit $limit;'

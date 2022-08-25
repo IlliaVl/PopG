@@ -5,6 +5,12 @@ class Game {
   /// Name of the game
   final String name;
 
+  /// Storyline of the game
+  final String storyline;
+
+  /// Summary of the game
+  final String summary;
+
   /// Cover of the game
   Cover? cover;
 
@@ -14,6 +20,8 @@ class Game {
   /// Creates new [Game]
   Game({
     required this.name,
+    this.storyline = '',
+    this.summary = '',
     this.cover,
     this.rating = 0.0,
   });

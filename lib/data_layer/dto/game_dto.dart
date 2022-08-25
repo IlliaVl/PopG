@@ -6,6 +6,12 @@ class GameDTO {
   /// Name of the game
   final String name;
 
+  /// Storyline of the game
+  final String? storyline;
+
+  /// Summary of the game
+  final String? summary;
+
   /// Cover ID of the game
   final int? cover;
 
@@ -16,6 +22,8 @@ class GameDTO {
   GameDTO({
     required this.id,
     required this.name,
+    this.storyline,
+    this.summary,
     this.cover,
     this.rating,
   });
@@ -23,8 +31,10 @@ class GameDTO {
   /// Creates a [GameDTO] from a json.
   factory GameDTO.fromJson(Map<String, dynamic> json) => GameDTO(
         id: json['id'],
-        cover: json['cover'],
         name: json['name'],
+        cover: json['cover'],
+        storyline: json['storyline'],
+        summary: json['summary'],
         rating: json['rating'],
       );
 

@@ -8,6 +8,8 @@ extension GameDTOMapping on GameDTO {
   /// Maps into a [Game]
   Game toGame() => Game(
         name: name,
+        storyline: storyline ?? '',
+        summary: summary ?? '',
         cover: cover == null ? null : Cover(id: cover!),
         rating: rating ?? 0.0,
       );

@@ -1,6 +1,10 @@
+import 'package:floor/floor.dart';
+
 /// Model which represents cover of the image
+@entity
 class Cover {
   /// ID of the cover
+  @primaryKey
   final int id;
 
   /// Image url string of the cover

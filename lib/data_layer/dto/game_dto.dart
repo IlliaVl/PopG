@@ -1,6 +1,10 @@
+import 'package:floor/floor.dart';
+
 /// Data transfer object that represents a game.
+@entity
 class GameDTO {
   /// ID of the game
+  @primaryKey
   final int id;
 
   /// Name of the game

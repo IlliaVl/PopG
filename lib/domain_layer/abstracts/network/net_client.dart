@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import 'endpoints/base_endpoints.dart';
@@ -38,6 +40,17 @@ abstract class NetClient {
     } on DioError catch (e) {
       print('Error: ${e.message}');
       rethrow;
+    }
+  }
+
+  /// Checks if there is internet connection
+  Future<bool> connected() async {
+    try {
+      final result = await InternetAddress.lookup('example.com');
+      return false;
+      // return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+    } on SocketException catch (_) {
+      return false;
     }
   }
 }

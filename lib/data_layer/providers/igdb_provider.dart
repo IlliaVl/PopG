@@ -1,9 +1,11 @@
+import 'package:popg/data_layer/database/app_database.dart';
+
 import '../../domain_layer/abstracts/providers/base_provider.dart';
 import '../dto/cover_dto.dart';
 import '../dto/game_dto.dart';
 
 /// IGDB data provider
-class IgdbProvider extends BaseProvider {
+class IgdbProvider extends BaseProvider with DatabaseHelper {
   /// Creates new [IgdbProvider]
   IgdbProvider(super.netClient);
 
@@ -15,6 +17,12 @@ class IgdbProvider extends BaseProvider {
     int limit = 30,
     int offset = 0,
   }) async {
+    if (!(await netClient.connected())) {
+      return selectPopularGames(
+        limit: limit,
+        offset: offset,
+      );
+    }
     final response = await netClient(
       netClient.endpoints.games,
       data: 'fields name, rating, cover, storyline, summary;'
@@ -24,9 +32,11 @@ class IgdbProvider extends BaseProvider {
           'offset $offset;',
     );
     if (response.data is List) {
-      return GameDTO.fromJsonList(
+      final dtos = GameDTO.fromJsonList(
         List<Map<String, dynamic>>.from(response.data),
       );
+      saveGames(dtos);
+      return dtos;
     }
     throw 'Games were not received';
   }
@@ -34,16 +44,21 @@ class IgdbProvider extends BaseProvider {
   /// Returns list of covers DTOs for provided list of [ids]
   @override
   Future<List<CoverDTO>> getCovers(List<int> ids) async {
+    if (!(await netClient.connected())) {
+      return selectCovers(ids);
+    }
     final response = await netClient(
       netClient.endpoints.covers,
-      data: 'fields image_id, width, height;'
+      data: 'fields game, image_id, width, height;'
           'limit 100;'
           'where id = (${ids.join(",")});',
     );
     if (response.data is List) {
-      return CoverDTO.fromJsonList(
+      final dtos = CoverDTO.fromJsonList(
         List<Map<String, dynamic>>.from(response.data),
       );
+      saveCovers(dtos);
+      return dtos;
     }
     throw 'Cover was not received';
   }

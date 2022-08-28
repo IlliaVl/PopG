@@ -7,6 +7,7 @@ import '../dto/game_dto.dart';
 extension GameDTOMapping on GameDTO {
   /// Maps into a [Game]
   Game toGame() => Game(
+        id: id,
         name: name,
         storyline: storyline ?? '',
         summary: summary ?? '',

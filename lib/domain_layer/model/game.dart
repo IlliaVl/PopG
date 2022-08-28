@@ -2,6 +2,9 @@ import 'cover.dart';
 
 /// Model representing game data
 class Game {
+  /// ID of the game
+  final int id;
+
   /// Name of the game
   final String name;
 
@@ -19,6 +22,7 @@ class Game {
 
   /// Creates new [Game]
   Game({
+    required this.id,
     required this.name,
     this.storyline = '',
     this.summary = '',

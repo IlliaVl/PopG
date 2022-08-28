@@ -63,7 +63,7 @@ class GamesCubit extends Cubit<GamesState> {
           offset: offset,
         ),
       );
-    } on Exception {
+    } on Exception catch (e) {
       emit(
         state.copyWith(
           busy: false,

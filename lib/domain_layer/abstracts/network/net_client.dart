@@ -47,8 +47,7 @@ abstract class NetClient {
   Future<bool> connected() async {
     try {
       final result = await InternetAddress.lookup('example.com');
-      return false;
-      // return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       return false;
     }

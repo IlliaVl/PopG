@@ -20,15 +20,6 @@ class IgdbRepository extends BaseRepository {
       limit: limit,
       offset: offset,
     );
-
-    // const name = 'app_database.db';
-    // final path = await sqfliteDatabaseFactory.getDatabasePath(name);
-    // sqfliteDatabaseFactory.deleteDatabase(path);
-    // final database = await $FloorAppDatabase.databaseBuilder(name).build();
-    // final gameDTODao = database.gameDTODao;
-    // await database.gameDTODao.insertGameDTOs(dtos);
-    // final result = await gameDTODao.findAllGameDTO();
-
     return dtos.map((dameDto) => dameDto.toGame()).toList();
   }
 

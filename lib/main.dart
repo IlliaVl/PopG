@@ -8,19 +8,6 @@ import 'package:popg/domain_layer/abstracts/repositories/base_repository.dart';
 import 'domain_layer/cubits/games_cubit.dart';
 import 'presentation_layer/screens/games_screen.dart';
 
-// void main() async {
-//   final netClient = IgdbClient();
-//   final provider = IgdbProvider(netClient);
-//   final games = await provider.getPopularGames();
-//   final coverIds = games
-//       .where((gameDto) => gameDto.cover != null)
-//       .map((gameDto) => gameDto.cover!)
-//       .toList();
-//   final covers = await provider.getCovers(coverIds);
-//
-//   runApp(const MyApp());
-// }
-
 void main() {
   runApp(MyApp(
     repository: IgdbRepository(

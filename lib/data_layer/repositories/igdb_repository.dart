@@ -4,9 +4,13 @@ import 'package:popg/domain_layer/abstracts/repositories/base_repository.dart';
 import 'package:popg/domain_layer/model/cover.dart';
 import 'package:popg/domain_layer/model/game.dart';
 
+import '../providers/igdb_provider.dart';
+
 class IgdbRepository extends BaseRepository {
+  final IgdbProvider _provider;
+
   /// Creates new [IgdbRepository]
-  IgdbRepository({required super.provider});
+  IgdbRepository({required IgdbProvider provider}) : _provider = provider;
 
   /// Returns list of popular games
   ///
@@ -16,7 +20,7 @@ class IgdbRepository extends BaseRepository {
     int limit = 30,
     int offset = 0,
   }) async {
-    final dtos = await provider.getPopularGames(
+    final dtos = await _provider.getPopularGames(
       limit: limit,
       offset: offset,
     );
@@ -26,7 +30,7 @@ class IgdbRepository extends BaseRepository {
   /// Returns list of covers for provided list of [ids]
   @override
   Future<List<Cover>> getCovers(List<int> ids) async {
-    final dtos = await provider.getCovers(ids);
+    final dtos = await _provider.getCovers(ids);
     return dtos
         .map((coverDto) => coverDto.toCover(_coverImageBuilder))
         .toList();

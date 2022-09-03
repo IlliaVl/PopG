@@ -1,18 +1,20 @@
 import 'package:popg/data_layer/database/app_database.dart';
 
-import '../../domain_layer/abstracts/providers/base_provider.dart';
+import '../../domain_layer/abstracts/network/net_client.dart';
 import '../dto/cover_dto.dart';
 import '../dto/game_dto.dart';
 
 /// IGDB data provider
-class IgdbProvider extends BaseProvider with DatabaseHelper {
+class IgdbProvider with DatabaseHelper {
+  /// The NetClient to use for the network requests
+  final NetClient netClient;
+
   /// Creates new [IgdbProvider]
-  IgdbProvider(super.netClient);
+  IgdbProvider(this.netClient);
 
   /// Returns list of popular games DTOs
   ///
   /// Use `limit` and `offset` to paginate.
-  @override
   Future<List<GameDTO>> getPopularGames({
     int limit = 30,
     int offset = 0,
@@ -42,7 +44,6 @@ class IgdbProvider extends BaseProvider with DatabaseHelper {
   }
 
   /// Returns list of covers DTOs for provided list of [ids]
-  @override
   Future<List<CoverDTO>> getCovers(List<int> ids) async {
     if (!(await netClient.connected())) {
       return selectCovers(ids);

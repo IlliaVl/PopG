@@ -147,13 +147,13 @@ class _$GameDTODao extends GameDTODao {
 
   @override
   Future<void> insertGameDTO(GameDTO gameDTO) async {
-    await _gameDTOInsertionAdapter.insert(gameDTO, OnConflictStrategy.abort);
+    await _gameDTOInsertionAdapter.insert(gameDTO, OnConflictStrategy.ignore);
   }
 
   @override
   Future<void> insertGameDTOs(List<GameDTO> gameDTOs) async {
     await _gameDTOInsertionAdapter.insertList(
-        gameDTOs, OnConflictStrategy.abort);
+        gameDTOs, OnConflictStrategy.ignore);
   }
 }
 
@@ -213,12 +213,12 @@ class _$CoverDTODao extends CoverDTODao {
 
   @override
   Future<void> insertCoverDTO(CoverDTO coverDTO) async {
-    await _coverDTOInsertionAdapter.insert(coverDTO, OnConflictStrategy.abort);
+    await _coverDTOInsertionAdapter.insert(coverDTO, OnConflictStrategy.ignore);
   }
 
   @override
   Future<void> insertCoverDTOs(List<CoverDTO> coverDTOs) async {
     await _coverDTOInsertionAdapter.insertList(
-        coverDTOs, OnConflictStrategy.abort);
+        coverDTOs, OnConflictStrategy.ignore);
   }
 }

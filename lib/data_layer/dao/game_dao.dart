@@ -10,9 +10,9 @@ abstract class GameDTODao {
     int offset = 0,
   });
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.ignore)
   Future<void> insertGameDTO(GameDTO gameDTO);
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.ignore)
   Future<void> insertGameDTOs(List<GameDTO> gameDTOs);
 }

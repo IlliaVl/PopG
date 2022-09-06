@@ -10,9 +10,9 @@ abstract class CoverDTODao {
   @Query('SELECT * FROM CoverDTO WHERE id IN (:ids)')
   Future<List<CoverDTO>> getCovers(List<int> ids);
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.ignore)
   Future<void> insertCoverDTO(CoverDTO coverDTO);
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.ignore)
   Future<void> insertCoverDTOs(List<CoverDTO> coverDTOs);
 }
